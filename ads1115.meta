@@ -1,0 +1,70 @@
+{
+  "0": {
+    "llType": "error",
+    "columns": [
+      {
+        "llabel": "error message",
+        "dtype": "str"
+      }
+    ]
+  },
+  "100": {
+    "llType": "channel0",
+    "columns": [
+      {
+        "llabel": "data",
+        "detail": "ADC channel 0",
+        "units": "V",
+        "dtype": "float"
+      }
+    ]
+  },
+  "101": {
+    "llType": "channel1",
+    "columns": [
+      {
+        "llabel": "data",
+        "detail": "ADC channel 1",
+        "units": "V",
+        "dtype": "float"
+      }
+    ]
+  },
+  "102": {
+    "llType": "channel2",
+    "columns": [
+      {
+        "llabel": "data",
+        "detail": "ADC Channel 2",
+        "units": "V",
+        "dtype": "float"
+      }
+    ]
+  },
+  "103": {
+    "llType": "channel3",
+    "columns": [
+      {
+        "llabel": "data",
+        "detail": "ADC Channel 3",
+        "units": "V",
+        "dtype": "float"
+      }
+    ]
+  },
+  "2": {
+    "llType": "configuration",
+    "columns": [
+      {
+        "llabel": "gain",
+        "detail": "PGA Gain",
+        "dtype": "int"
+      },
+      {
+        "llabel": "ODR",
+        "detail": "Operating Data Rate",
+        "dtype": "int"
+      }
+    ]
+  }
+}
