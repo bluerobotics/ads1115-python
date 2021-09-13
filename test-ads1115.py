@@ -3,35 +3,25 @@
 from ads1115 import ADS1115
 import argparse
 from llog import LLogWriter
-import signal
 import time
-import os
+from pathlib import Path
 
-dir_path = os.path.dirname(os.path.realpath(__file__))
+device = "ads1115"
+defaultMeta = Path(__file__).resolve().parent / f"{device}.meta"
 
-defaultMeta = dir_path + '/ads1115.meta'
-
-parser = argparse.ArgumentParser(description='ads1115 test')
+parser = argparse.ArgumentParser(description=f'{device} test')
 parser.add_argument('--output', action='store', type=str, default=None)
 parser.add_argument('--meta', action='store', type=str, default=defaultMeta)
 parser.add_argument('--frequency', action='store', type=int, default=None)
 args = parser.parse_args()
 
-log = LLogWriter(args.meta, args.output)
+with LLogWriter(args.meta, args.output) as log:
+    ads = ADS1115()
 
-def cleanup(_signo, _stack):
-    log.close()
-    exit(0)
+    LLOG_CH0 = 100
 
-signal.signal(signal.SIGTERM, cleanup)
-signal.signal(signal.SIGINT, cleanup)
-
-ads = ADS1115()
-
-LLOG_CH0 = 100
-
-while True:
-    for channel in range(4):
-        log.log(LLOG_CH0 + channel, ads.read(channel))
-        if args.frequency:
-            time.sleep(1.0/args.frequency)
+    while True:
+        for channel in range(4):
+            log.log(LLOG_CH0 + channel, ads.read(channel))
+            if args.frequency:
+                time.sleep(1.0/args.frequency)
