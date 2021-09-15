@@ -18,7 +18,7 @@ def generate_figures(log):
     plt.subplot(spec[1,1])
     log.channel3.pplot()
 
-if __name__ == 'main':
+if __name__ == '__main__':
     import argparse
     from llog import LLogReader
     from matplotlib.backends.backend_pdf import PdfPages
@@ -40,7 +40,7 @@ if __name__ == 'main':
 
     if args.output:
         # todo check if it exists!
-        with PdfPages(args.output, metadata=log.meta) as pdf:
+        with PdfPages(args.output) as pdf:
             [pdf.savefig(n) for n in plt.get_fignums()]
 
     if args.show:
