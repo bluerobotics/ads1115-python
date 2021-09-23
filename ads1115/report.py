@@ -2,10 +2,12 @@
 
 import matplotlib.pyplot as plt
 
-def generate_figures(log):
-    footer = 'ads1115 test report'
+DEVICE = 'ads1115'
 
-    f, spec = log.figure(height_ratios=[1,1], suptitle='ads1115 data', footer=footer)
+def generate_figures(log):
+    footer = f'{DEVICE} test report'
+
+    f, spec = log.figure(height_ratios=[1,1], suptitle=f'{DEVICE} data', footer=footer)
     plt.subplot(spec[0,0])
     log.channel0.pplot()
 
@@ -19,19 +21,10 @@ def generate_figures(log):
     log.channel3.pplot()
 
 def main():
-    import argparse
     from llog import LLogReader
     from matplotlib.backends.backend_pdf import PdfPages
-    import os
 
-    dir_path = os.path.dirname(os.path.realpath(__file__))
-
-    defaultMeta = dir_path + '/ads1115.meta'
-    parser = argparse.ArgumentParser(description='ads1115 test report')
-    parser.add_argument('--input', action='store', type=str, required=True)
-    parser.add_argument('--meta', action='store', type=str, default=defaultMeta)
-    parser.add_argument('--output', action='store', type=str)
-    parser.add_argument('--show', action='store_true')
+    parser = LLogReader.create_default_parser(__file__, DEVICE)
     args = parser.parse_args()
 
     log = LLogReader(args.input, args.meta)
