@@ -15,21 +15,18 @@ def main():
         # requires custom channel setup - doesn't use standard data logging
         LLOG_CH0 = 100
 
-        if args.frequency:
-            delay = 1 / args.frequency
-
         start_time = time.time()
-        while time.time() - start_time < args.duration:
+        while time.time() < start_time + args.duration:
             for channel in range(4):
                 try:
-                    self.log(LLOG_CH0 + channel, ads.read(channel))
+                    log.log(LLOG_CH0 + channel, ads.read(channel))
                 except Exception as e:
-                    self.log_error(e, measurement_time)
+                    log.log_error(e)
                     if args.stop_on_error:
                         return
 
                 if args.frequency:
-                    time.sleep(delay)
+                    time.sleep(1.0 / args.frequency)
 
 if __name__ == '__main__':
     main()
