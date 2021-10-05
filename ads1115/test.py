@@ -21,7 +21,7 @@ def main():
                 try:
                     log.log(LLOG_CH0 + channel, ads.read(channel))
                 except Exception as e:
-                    log.log_error(e)
+                    log.log_error(f'"e"')
                     if args.stop_on_error:
                         return
 
