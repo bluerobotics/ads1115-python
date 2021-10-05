@@ -15,7 +15,8 @@
         "llabel": "data",
         "detail": "ADC channel 0",
         "units": "V",
-        "dtype": "float"
+        "dtype": "float",
+        "color": "goldenrod"
       }
     ]
   },
@@ -26,7 +27,8 @@
         "llabel": "data",
         "detail": "ADC channel 1",
         "units": "V",
-        "dtype": "float"
+        "dtype": "float",
+        "color": "olivedrab"
       }
     ]
   },
@@ -37,7 +39,8 @@
         "llabel": "data",
         "detail": "ADC Channel 2",
         "units": "V",
-        "dtype": "float"
+        "dtype": "float",
+        "color": "springgreen"
       }
     ]
   },
@@ -48,7 +51,8 @@
         "llabel": "data",
         "detail": "ADC Channel 3",
         "units": "V",
-        "dtype": "float"
+        "dtype": "float",
+        "color": "cornflowerblue"
       }
     ]
   },
