@@ -23,6 +23,7 @@ def generate_figures(log):
 def main():
     from llog import LLogReader
     from matplotlib.backends.backend_pdf import PdfPages
+    from pathlib import Path
 
     parser = LLogReader.create_default_parser(__file__, DEVICE)
     args = parser.parse_args()
@@ -32,9 +33,11 @@ def main():
     generate_figures(log)
 
     if args.output:
-        # todo check if it exists!
-        with PdfPages(args.output) as pdf:
-            [pdf.savefig(n) for n in plt.get_fignums()]
+        if Path(args.output).exists():
+            print(f'WARN {args.output} exists! skipping ..')
+        else:
+            with PdfPages(args.output) as pdf:
+                [pdf.savefig(n) for n in plt.get_fignums()]
 
     if args.show:
         plt.show()
