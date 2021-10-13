@@ -16,7 +16,8 @@
         "detail": "ADC channel 0",
         "units": "V",
         "dtype": "float",
-        "color": "goldenrod"
+        "color": "goldenrod",
+        "style": "."
       }
     ]
   },
@@ -28,7 +29,8 @@
         "detail": "ADC channel 1",
         "units": "V",
         "dtype": "float",
-        "color": "olivedrab"
+        "color": "olivedrab",
+        "style": "."
       }
     ]
   },
@@ -40,7 +42,8 @@
         "detail": "ADC Channel 2",
         "units": "V",
         "dtype": "float",
-        "color": "springgreen"
+        "color": "springgreen",
+        "style": "."
       }
     ]
   },
@@ -52,7 +55,8 @@
         "detail": "ADC Channel 3",
         "units": "V",
         "dtype": "float",
-        "color": "cornflowerblue"
+        "color": "cornflowerblue",
+        "style": "."
       }
     ]
   },
