@@ -20,6 +20,20 @@ def generate_figures(log):
     plt.subplot(spec[1,1])
     log.channel3.pplot()
 
+    f, spec = log.figure(height_ratios=[1,1], suptitle=f'navigator measurements', footer=footer)
+    plt.subplot(spec[0,0])
+    log.channel0.pplot()
+
+    plt.subplot(spec[0,1])
+    log.channel1.pplot()
+
+    plt.subplot(spec[1,0])
+    ((log.channel2-0.33)*37.8788).pplot(title='battery current (amps)')
+
+    plt.subplot(spec[1,1])
+    (log.channel3*11.0).pplot(title='battery voltage')
+
+
 def main():
     from llog import LLogReader
     from matplotlib.backends.backend_pdf import PdfPages
