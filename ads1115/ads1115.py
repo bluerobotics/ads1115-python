@@ -8,10 +8,10 @@ POINTER_CONVERSION = 0x00
 POINTER_CONFIG = 0x01
 
 # conversion in progress flag
-CONFIG_OS = 0x8000
+CONFIG_OS = 1 << 15
 
 # single shot mode is to be used for multiple channels
-CONFIG_MODE = 1 # single shot mode
+CONFIG_MODE = 1 << 8 # single shot mode
 
 # 860 samples per second data rate (highest available), not sure if this matters in single shot mode
 CONFIG_DR = 0b111 << 5
@@ -33,6 +33,8 @@ _mux = {
     3: CONFIG_MUX_AIN3
 }
 
+DELAY_MEASURE = 1.0/860
+
 class ADS1115:
 
     # Navigator ADS1115 is on i2c1 address 0x48
@@ -46,8 +48,12 @@ class ADS1115:
         config = config | _mux[channel]
         # request conversion on selected channel
         self._write_config(config)
-        # wait for conversion to complete (560 conversions/second)
-        time.sleep(0.002)
+
+        # wait for conversion to complete (860 conversions/second)
+        time.sleep(DELAY_MEASURE)
+        while int.from_bytes(self._bus.read_i2c_block_data(_address, POINTER_CONVERSION, 2), 'big', signed=True) & (1 << 15):
+            continue
+
         # read conversion register data
         data = self._read_data()
         # convert to voltage
